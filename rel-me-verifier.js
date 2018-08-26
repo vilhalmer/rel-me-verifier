@@ -39,6 +39,12 @@
                 }
                 let potentialBacklinks = response.response.querySelectorAll('a[rel~=me]');
                 console.log("rel=me: Found " + potentialBacklinks.length + " candidates for backlinking from " + link.href);
+
+                if (potentialBacklinks.length === 0) {
+                    verify(link, INVALID);
+                    return;
+                };
+
                 remainingBacklinksByLink[link] = potentialBacklinks.length; // This counter will be used to track when the link can be marked as INVALID, that is, when we have found that none of the potential backlinks link to currentUrl.
                 potentialBacklinks.forEach(callback);
             }
