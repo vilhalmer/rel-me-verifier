@@ -104,10 +104,9 @@
         }
 
         // For each rel=me on the linked page, check to see if it's pointing back here (following any redirects).
-        // There's no point in fetching the actual content, so we do HEAD.
         forEachRelMe(link, function (potentialBacklink) {
             GM_xmlhttpRequest({
-                method: 'HEAD',
+                method: 'GET',
                 url: potentialBacklink.href,
                 headers: {
                     'User-Agent': 'rel=me', // Need a fake user-agent to follow t.co redirects.
